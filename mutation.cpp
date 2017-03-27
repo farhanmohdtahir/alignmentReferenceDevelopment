@@ -44,15 +44,15 @@ string insertMut(int oriBaseLen, int * mutType, int *mutBase, string oriBase,dou
 			
 				if (mutType[j]==0){
 					newBase[newNum]=randbase();
-					newNum+=1;
-					ins+=1; 
+					++newNum;
+					++ins; 
 				}
 				
 				else if (mutType[j]==1){
 					newBase[newNum]=oriBase[mutRef+1];
-					newNum+=1;
+					++newNum;
 					mutRef+=2;
-					del+=1;
+					++del;
 				}
 				
 				else{
@@ -60,19 +60,19 @@ string insertMut(int oriBaseLen, int * mutType, int *mutBase, string oriBase,dou
 					while(checkRandSubs(oriBase, newBase, indctr, newNum)){
 						newBase[newNum]=randbase();
 					}
-					newNum+=1;
-					mutRef+=1;
-					sub+=1;
+					++newNum;
+					++mutRef;
+					++sub;
 				}
-				j+=1;
-				indctr+=1;
-				count+=1;
+				++j;
+				++indctr;
+				++count;
 			}
 			else{						
 				newBase[newNum]=oriBase[mutRef];
-				newNum+=1;
-				mutRef+=1;
-				indctr+=1;
+				++newNum;
+				++mutRef;
+				++indctr;
 			}
 		}
 		for(int i=0; i<newNum; i++){
@@ -91,11 +91,4 @@ void mutBaseDisp(string out, string newBaseStr, double mutPercent ){
 		outfile.close();	
 }
 
-void noMutDisp (string out, string oriBase, double mutPercent){
-	ofstream outfile;	
-		outfile.open(out.c_str());
-		outfile<<">sequence with "<<mutPercent<<"% INDEL mutation and has close evolutionary distance with query\n";
-		outfile<<oriBase;
-		outfile.close();
-}
 
