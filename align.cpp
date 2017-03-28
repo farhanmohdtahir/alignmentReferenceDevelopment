@@ -54,17 +54,23 @@ void printAlign(string in, string out, double ins, double del, double sub, doubl
 		outAlign+="Align.txt";
 		alignOutfile.open(outAlign.c_str());
 	
-	alignOutfile<<">alignment file between "<<in<<" and "<<out<<endl;
-	alignOutfile<<"query sequence file: "<<in<<"("<<oriBaseLen<<"b.p)\n";
-	alignOutfile<<"sample sequence file: "<<out<<"("<<newBaseStr.length()<<"b.p)\n";
-	alignOutfile<<"indentity percentage: "<<100-mutPercent<<"%\n";
-	alignOutfile<<"similarity percentage: "<<100-mutPercent<<"%\n";
-	alignOutfile<<"mutation percentage: "<<mutPercent<<"%\n";
-	alignOutfile<<fixed;
-	alignOutfile<<"insertion percentage: "<<setprecision(2)<<(ins/oriBaseLen)*100<<"%\n";
-	alignOutfile<<"deletion percentage: "<<setprecision(2)<<(del/oriBaseLen)*100<<"%\n";	
-	alignOutfile<<"subtitution percentage: "<<setprecision(2)<<(sub/oriBaseLen)*100<<"%\n\n";
-//	cout<<"alignment sequence: \n";
-//	cout<<alignBaseStr<<endl; 
-alignOutfile.close();
+		alignOutfile<<">alignment file between "<<in<<" and "<<out<<endl;
+		alignOutfile<<"query sequence file: "<<in<<"("<<oriBaseLen<<"b.p)\n";
+		alignOutfile<<"sample sequence file: "<<out<<"("<<newBaseStr.length()<<"b.p)\n";
+	if(mutPercent<60){
+		alignOutfile<<"indentity percentage: "<<100-mutPercent<<"% (has evolutionary relationship to query sequence)\n";
+		alignOutfile<<"similarity percentage: "<<100-mutPercent<<"% (has evolutionary relationship to query sequence)\n";
+	}
+	else{
+		alignOutfile<<"indentity percentage: "<<100-mutPercent<<"% (no evolutionary relationship to query sequence)\n";
+		alignOutfile<<"similarity percentage: "<<100-mutPercent<<"% (no evolutionary relationship to query sequence)\n";		
+	}
+		alignOutfile<<"mutation percentage: "<<mutPercent<<"%\n";
+		alignOutfile<<fixed;
+		alignOutfile<<"insertion percentage: "<<setprecision(2)<<(ins/oriBaseLen)*100<<"%\n";
+		alignOutfile<<"deletion percentage: "<<setprecision(2)<<(del/oriBaseLen)*100<<"%\n";	
+		alignOutfile<<"subtitution percentage: "<<setprecision(2)<<(sub/oriBaseLen)*100<<"%\n\n";
+	//	cout<<"alignment sequence: \n";
+	//	cout<<alignBaseStr<<endl; 
+	alignOutfile.close();
 }

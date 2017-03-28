@@ -5,11 +5,11 @@
 
 using namespace std;
 
-static const char base[5]={'A', 'T', 'G', 'C', 'N'};
+static const char base[4]={'A', 'T', 'G', 'C'};//, 'N'};
 
 char randbase(){
 	int randNum;
-	randNum=rand() % 5;
+	randNum=rand() % 4;
 	return base[randNum];
 }
 

@@ -86,8 +86,14 @@ string insertMut(int oriBaseLen, int * mutType, int *mutBase, string oriBase,dou
 void mutBaseDisp(string out, string newBaseStr, double mutPercent ){
 	ofstream outfile;
 		outfile.open(out.c_str());
-			outfile<<">sequence with "<<mutPercent<<"% INDEL mutation and has close evolutionary distance with query\n";
+		if(mutPercent<60){
+			outfile<<">sequence with "<<mutPercent<<"% INDEL mutation and has evolutionary relationship with query\n";
 			outfile<<newBaseStr;
+		}
+		else{
+			outfile<<">sequence with "<<mutPercent<<"% INDEL mutation and has no evolutionary relationship with query\n";
+			outfile<<newBaseStr;
+		}
 		outfile.close();	
 }
 
