@@ -64,7 +64,7 @@ int main(int argc, char * argv []){
 	
 	mutBaseDisp( out, newBaseStr, mutPercent);	
 //	alignBaseStr=alignStr (oriBaseLen, mutBase, mutType, oriBase);
-	printAlign(in, out, ins, del, sub, mutPercent, oriBaseLen, alignBaseStr, newBaseStr);
+	printAlign(in, out, ins, del, sub, mutPercent, oriBaseLen, oriBase, newBaseStr, mutType, mutBase);
 }
 else{
 	help();

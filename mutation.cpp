@@ -17,11 +17,11 @@ void assignMut(double mutPercent, int oriBaseLen, int *mutType, int *mutBase){
 		
 		for (int i=0; i<mutFreqRnd; i++){
 			if (i==0) {
-			mutType[i]=rand() % 4;    					//0-addition 1-deletion 2-substitution 
+			mutType[i]=rand() % 3;    					//0-addition 1-deletion 2-substitution 
 			mutBase[i]=rand() % oriBaseLen;
 			}
 			else{
-			mutType[i]=rand() % 4;    					//0-addition 1-deletion 2-substitution 
+			mutType[i]=rand() % 3;    					//0-addition 1-deletion 2-substitution 
 			mutBase[i]=rand() % oriBaseLen;
 			while(checkRand(mutBase, i)){
 				mutBase[i]=rand() % oriBaseLen;
@@ -30,7 +30,8 @@ void assignMut(double mutPercent, int oriBaseLen, int *mutType, int *mutBase){
 		}
 		
 		int* end = mutBase + mutFreqRnd;
-		sort(mutBase,end);	
+		sort(mutBase,end);
+	
 }
 
 string insertMut(int oriBaseLen, int * mutType, int *mutBase, string oriBase,double &ins, double &del, double &sub){
@@ -39,7 +40,7 @@ string insertMut(int oriBaseLen, int * mutType, int *mutBase, string oriBase,dou
 		char newBase[300000];
 		string newBaseStr="";
 
-		while(indctr<oriBaseLen){		
+		while(indctr<oriBaseLen+15){		
 			if(indctr==mutBase[j]){	
 			
 				if (mutType[j]==0){
@@ -80,6 +81,7 @@ string insertMut(int oriBaseLen, int * mutType, int *mutBase, string oriBase,dou
 			
 			if(!newBase[i]) break;
 		}
+//		cout<<newBaseStr;
 		return newBaseStr;
 }
 
