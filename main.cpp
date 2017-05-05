@@ -20,7 +20,8 @@ int main(int argc, char * argv []){
 	double  mutPercent=-1, insPercent, delPercent, subPercent, ins=0, del=0, sub=0;
 	string in="sequence.fasta", out="takTahu0.fasta", outAlign="",  oriBase="", newBaseStr="", alignBaseStr;
 	bool option=false;
-	
+
+//getopt function	
     static struct option long_options[] = {
         {"help",                       no_argument,       0,  'h' },
         {"inputFile",              required_argument,     0,  'i' },
@@ -52,22 +53,23 @@ int main(int argc, char * argv []){
 		
 		int  mutBase[oriBaseLen], mutType[oriBaseLen];
 		
-		if (mutPercent==0)
+		if (mutPercent==0)				//if there is percentage of mutation 
 		{
-			newBaseStr=oriBase;
+			newBaseStr=oriBase; 							
 		}
 		
-		else{
-			assignMut(mutPercent, oriBaseLen, mutType, mutBase);
-			newBaseStr=insertMut(oriBaseLen, mutType, mutBase, oriBase, ins, del, sub);
+		else{							//if there is percentage of mutation 
+			assignMut(mutPercent, oriBaseLen, mutType, mutBase);					   //Assign mutation to random residue
+			newBaseStr=insertMut(oriBaseLen, mutType, mutBase, oriBase, ins, del, sub);//Apply mutation to the residue
 	}
 	
-	mutBaseDisp( out, newBaseStr, mutPercent);	
-//	alignBaseStr=alignStr (oriBaseLen, mutBase, mutType, oriBase);
-	printAlign(in, out, ins, del, sub, mutPercent, oriBaseLen, oriBase, newBaseStr, mutType, mutBase);
+	mutBaseDisp( out, newBaseStr, mutPercent);	//producing Simulated Sample Sequence file (.fasta)
+
+	//producing reference alignment file (.txt)
+	printAlign(in, out, ins, del, sub, mutPercent, oriBaseLen, oriBase, newBaseStr, mutType, mutBase); 
 }
 else{
-	help();
+	help(); //display help function on how to use the alignerProgram
 }
 return 0;
 }

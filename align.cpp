@@ -16,7 +16,7 @@ using namespace std;
 void alignStr (int oriBaseLen, int * mutBase, int * mutType, string oriBase, string newBaseStr, int & alignLen, align & a, align & b, align & symbol){
 	int j=0, k=0, l=0;
 
-	for (int i=0; k<newBaseStr.length(); i++){
+	for (int i=0; k<newBaseStr.length(); i++){ //create alignment sequence
 		if (k==mutBase[l]){
 			
 			if (mutType[l]==0){			
@@ -48,7 +48,7 @@ void alignStr (int oriBaseLen, int * mutBase, int * mutType, string oriBase, str
 	++alignLen;
 	}
 	
-	for(int i=0; i<alignLen; i++){
+	for(int i=0; i<alignLen; i++){			//create identical or non identical symbol
 		if(a.seqChar[i]==b.seqChar[i]){
 			symbol.seqChar[i]='|';
 		}
@@ -144,8 +144,8 @@ void printAlign(string in, string out, double ins, double del, double sub, doubl
 	alignOutfile<<endl;
 	alignOutfile<<endl;
 	alignOutfile<<endl;
-	j+=60;
-	k+=60;
+	j+=60;						//ensure each line contain up to 60 residues only
+	k+=60;						//ensure each line contain up to 60 residues only
 }
 	alignOutfile.close();
 }

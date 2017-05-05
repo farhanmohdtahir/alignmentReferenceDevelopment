@@ -5,7 +5,7 @@
 
 using namespace std;
 
-static const char base[4]={'A', 'T', 'G', 'C'};//, 'N'};
+static const char base[4]={'A', 'T', 'G', 'C'};
 
 char randbase(){
 	int randNum;

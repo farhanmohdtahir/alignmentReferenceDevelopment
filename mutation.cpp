@@ -12,19 +12,19 @@ using namespace std;
 void assignMut(double mutPercent, int oriBaseLen, int *mutType, int *mutBase){
 	int mutFreqRnd;
 	double mutFreq;
-		mutFreq=(mutPercent/100)*oriBaseLen;
+		mutFreq=(mutPercent/100)*oriBaseLen;			//convert percentage to number of residue
 		mutFreqRnd=round(mutFreq);
 		
 		for (int i=0; i<mutFreqRnd; i++){
 			if (i==0) {
 			mutType[i]=rand() % 3;    					//0-addition 1-deletion 2-substitution 
-			mutBase[i]=rand() % oriBaseLen;
+			mutBase[i]=rand() % oriBaseLen;				//choose random residues to be mutated
 			}
 			else{
 			mutType[i]=rand() % 3;    					//0-addition 1-deletion 2-substitution 
-			mutBase[i]=rand() % oriBaseLen;
-			while(checkRand(mutBase, i)){
-				mutBase[i]=rand() % oriBaseLen;
+			mutBase[i]=rand() % oriBaseLen;				//choose random residues to be mutated
+			while(checkRand(mutBase, i)){				//determine if the mutated residues had been assigned before or not
+				mutBase[i]=rand() % oriBaseLen;			//if yes, program choose another residues randomly
 			}
 			}	
 		}
@@ -40,7 +40,7 @@ string insertMut(int oriBaseLen, int * mutType, int *mutBase, string oriBase,dou
 		char newBase[300000];
 		string newBaseStr="";
 
-		while(indctr<oriBaseLen+15){		
+		while(indctr<oriBaseLen+15){		//create simulated sample sequence 
 			if(indctr==mutBase[j]){	
 			
 				if (mutType[j]==0){
@@ -81,7 +81,7 @@ string insertMut(int oriBaseLen, int * mutType, int *mutBase, string oriBase,dou
 			
 			if(!newBase[i]) break;
 		}
-//		cout<<newBaseStr;
+
 		return newBaseStr;
 }
 

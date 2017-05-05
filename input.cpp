@@ -7,10 +7,10 @@ using namespace std;
 
 string encodebase (string in1){
 	int i=0;
-	ifstream infile1, infile2;
+	ifstream infile1;
 	string line, totalLine="";
 	infile1.open(in1.c_str());
-	while(getline(infile1, line)){	
+	while(getline(infile1, line)){	 //transferring sequence from file to string var in program
 		if(line[i]!='>'){
 		totalLine=totalLine+line;
 	}	
